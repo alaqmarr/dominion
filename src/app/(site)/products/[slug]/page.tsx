@@ -121,41 +121,18 @@ export default async function Post({ params }: Props) {
                 </div>
               </div>
               <div className="-mx-4 flex flex-wrap">
-                <div className="w-full px-4 lg:w-8/12">
-                  <div className="blog-details xl:pr-10">
-                    <div dangerouslySetInnerHTML={{ __html: post.description }}></div>
-                  </div>
-                </div>
+
                 <div className="w-full px-4 lg:w-4/12">
                   <div>
                     <Newsletter product={post} />
 
-                    <div className="-mx-4 mb-8 flex flex-wrap">
-                      <div className="w-full px-4">
-                        <h2
-                          className="wow fadeInUp relative pb-5 text-2xl font-semibold text-dark dark:text-white sm:text-[28px]"
-                          data-wow-delay=".1s"
-                        >
-                          Popular Products
-                        </h2>
-                        <span className="mb-10 inline-block h-[2px] w-20 bg-primary"></span>
-                      </div>
-                      {posts.slice(0, 3).map((blog:any, i:any) => (
-                        <PopularArticle
-                          key={i}
-                          image={blog.images[0].url}
-                          title={blog?.name.slice(0, 30)}
-                          name={''}
-                        />
-                      ))}
-                    </div>
 
                     <div
                       className="wow fadeInUp mb-12 overflow-hidden rounded"
                       data-wow-delay=".1s"
                     >
                       <Image
-                        src="/images/blog/bannder-ad.png"
+                        src={post.images[0].url}
                         alt="image"
                         className="w-full"
                         width={408}
@@ -164,11 +141,35 @@ export default async function Post({ params }: Props) {
                     </div>
                   </div>
                 </div>
+                <div className="w-full px-4 lg:w-8/12">
+                  <div className="blog-details xl:pr-10">
+                    <div dangerouslySetInnerHTML={{ __html: post.description }}></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
           <div className="-mx-4 flex flex-wrap">
+            <div className="-mx-4 mb-8 flex flex-wrap">
+              <div className="w-full px-4">
+                <h2
+                  className="wow fadeInUp relative pb-5 text-2xl font-semibold text-dark dark:text-white sm:text-[28px]"
+                  data-wow-delay=".1s"
+                >
+                  Popular Products
+                </h2>
+                <span className="mb-10 inline-block h-[2px] w-20 bg-primary"></span>
+              </div>
+              {posts.slice(0, 3).map((blog: any, i: any) => (
+                <PopularArticle
+                  key={i}
+                  image={blog.images[0].url}
+                  title={blog?.name.slice(0, 30)}
+                  name={''}
+                />
+              ))}
+            </div>
             <div
               className="wow fadeInUp mt-14 w-full px-4"
               data-wow-delay=".2s"
@@ -179,7 +180,7 @@ export default async function Post({ params }: Props) {
               <span className="mb-10 inline-block h-[2px] w-20 bg-primary"></span>
             </div>
 
-            {posts.slice(0, 3).map((blog:any, key:any) => (
+            {posts.slice(0, 3).map((blog: any, key: any) => (
               <div key={key} className="w-full px-4 md:w-2/3 lg:w-1/2 xl:w-1/3">
                 <SingleBlog blog={blog} />
               </div>
