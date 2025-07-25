@@ -3,15 +3,14 @@ import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 
-const SingleBlog = ({ blog }: { blog: Blog }) => {
-  const { title, coverImage, excerpt, date, slug } = blog;
+const SingleBlog = ({ blog }: { blog: any }) => {
 
   return (
     <div className="wow fadeInUp group mb-10" data-wow-delay=".1s">
       <div className="mb-8 overflow-hidden rounded">
-        <Link href={`/blogs/${slug}`} aria-label="blog cover" className="block">
+        <Link href={`/products/${blog.id}`} aria-label="blog cover" className="block">
           <Image
-            src={coverImage!}
+            src={blog.images[0].url!}
             alt="image"
             className="w-full transition group-hover:rotate-6 group-hover:scale-125"
             width={408}
@@ -20,18 +19,18 @@ const SingleBlog = ({ blog }: { blog: Blog }) => {
         </Link>
       </div>
       <div>
-        <span className="mb-5 inline-block rounded bg-primary px-4 py-1 text-center text-xs font-semibold leading-loose text-white">
+        {/* <span className="mb-5 inline-block rounded bg-primary px-4 py-1 text-center text-xs font-semibold leading-loose text-white">
           {format(new Date(date), "dd MMM yyyy")}
-        </span>
+        </span> */}
         <h3>
           <Link
-            href={`/blogs/${slug}`}
+            href={`/products/${blog.id}`}
             className="mb-4 inline-block text-xl font-semibold text-dark hover:text-primary dark:text-white dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl"
           >
-            {title}
+            {blog.name}
           </Link>
         </h3>
-        <p className="text-base text-body-color dark:text-dark-6">{excerpt}</p>
+        <p className="text-base text-body-color dark:text-dark-6" dangerouslySetInnerHTML={{ __html: blog.description.length > 100 ? blog.description.substring(0, 100) + '...read more' : blog.description }}></p>
       </div>
     </div>
   );

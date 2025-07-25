@@ -5,10 +5,10 @@ const Newsletter = () => {
       data-wow-delay=".1s"
     >
       <h3 className="mb-[6px] text-[28px] font-semibold leading-[40px] text-white">
-        Join our newsletter!
+        Receive Promotional Emails
       </h3>
       <p className="mb-5 text-base text-white">
-        Enter your email to receive our latest newsletter.
+        Enter your email to receive our latest updates and news.
       </p>
       <form>
         <input
